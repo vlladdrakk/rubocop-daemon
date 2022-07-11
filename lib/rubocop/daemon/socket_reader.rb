@@ -17,7 +17,7 @@ module RuboCop
         Helper.redirect(
           stdin: StringIO.new(request.body),
           stdout: @socket,
-          stderr: @socket,
+          stderr: File.open(File::NULL, "w")
         ) do
           create_command_instance(request).run
         end
